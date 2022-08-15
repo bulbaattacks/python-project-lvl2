@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "A cli-utility to compare two files for differences"
 authors = ["Arina Zubova <arina777pototskaya@gmail.com>"]
 packages = [
   { include = "gendiff" },
@@ -9,6 +9,8 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
+PyYAML = "^6.0"
+
 
 [tool.poetry.scripts]
 gendiff = 'gendiff.scripts.gendiff:main'
