@@ -1,10 +1,10 @@
 import json
-import os.path
+from os.path import abspath
 
 
 def generate_diff(file1, file2):
-    file1_path = os.path.abspath(file1)
-    file2_path = os.path.abspath(file2)
+    file1_path = abspath(file1)
+    file2_path = abspath(file2)
 
     source1 = json.load(open(file1_path))
     source2 = json.load(open(file2_path))
