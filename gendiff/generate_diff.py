@@ -1,5 +1,5 @@
 import json
-import os
+import os.path
 
 
 def generate_diff(file1, file2):
