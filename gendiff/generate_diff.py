@@ -1,13 +1,9 @@
 import json
-from os.path import abspath
-
 
 def generate_diff(file1, file2):
-    file1_path = abspath(file1)
-    file2_path = abspath(file2)
 
-    source1 = json.load(open(file1_path))
-    source2 = json.load(open(file2_path))
+    source1 = json.load(open(file1))
+    source2 = json.load(open(file2))
 
     all_keys = set(list(source1.keys()) + list(source2.keys()))
     diff = ""
