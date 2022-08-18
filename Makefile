@@ -26,5 +26,6 @@ test:
 	poetry run pytest
 
 
-reinstall:
+package-reinstall:
+
 	python3 -m pip install dist/*.whl --force-reinstall
