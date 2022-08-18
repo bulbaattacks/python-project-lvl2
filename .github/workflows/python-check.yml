@@ -1,0 +1,13 @@
+name: python-check
+on: push
+jobs:
+  linter-check:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: run lint
+        run: pip install poetry
+             make lint
+      - name: run test
+        run: pip install poetry
+             make test
+       
