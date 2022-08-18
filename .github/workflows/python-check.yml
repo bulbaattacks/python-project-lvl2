@@ -1,17 +1,28 @@
 name: python-check
-on: push
+
+on:
+  - push
+
 jobs:
-  linter-check:
+  build:
     runs-on: ubuntu-latest
-    steps: 
-      - name: install poetry
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+        # make depends on poetry
+      - name: Install dependencies
         run: |
           pip install poetry
-      - name: run lint
+          make install
+      - name: Run linter
         run: |
-             make lint
-      - name: run test
+          make lint
+      - name: Run pytest
         run: |
-            make test
-             
+          make test
+        
        
