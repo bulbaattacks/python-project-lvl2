@@ -9,3 +9,4 @@ coverage.xml
 .vim
 .idea
 linter-check.yml
+.DS_Store
