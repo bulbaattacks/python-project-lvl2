@@ -1,10 +1,14 @@
-import json
+from gendiff.parser import parser_content
+
+
+def get_content(path):
+    with open(path, 'r') as file_content:
+        return parser_content(file_content.read(), path.split('.')[-1])
 
 
 def generate_diff(file1, file2):
-
-    source1 = json.load(open(file1))
-    source2 = json.load(open(file2))
+    source1 = get_content(file1)
+    source2 = get_content(file2)
 
     all_keys = set(list(source1.keys()) + list(source2.keys()))
     diff = ""

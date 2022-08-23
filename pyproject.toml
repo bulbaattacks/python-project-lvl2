@@ -11,6 +11,7 @@ packages = [
 python = "^3.9"
 flake8 = "^5.0.4"
 pytest-cov = "^3.0.0"
+PyYAML = "^6.0"
 
 
 [tool.poetry.scripts]
