@@ -1,6 +1,6 @@
 from gendiff.parser import parser_content
 from gendiff.dicts_builder import diff_builder
-from gendiff.formatters.stylish import style_maker
+from gendiff.formatters.stylish import format_stylish
 
 
 def get_content(path):
@@ -14,4 +14,4 @@ def generate_diff(file1, file2):
 
     diff = diff_builder(source1, source2)
 
-    return style_maker(diff)
+    return format_stylish(diff)
