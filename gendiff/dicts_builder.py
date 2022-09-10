@@ -27,7 +27,7 @@ def build_for_diff_dicts(dict1, dict2, key):
     return {
         'action': 'record is the same',
         'value': dict1.get(key)
-        }
+    }
 
 
 def diff_builder(dict1, dict2):
