@@ -4,29 +4,29 @@ from collections import defaultdict
 def build_for_diff_dicts(dict1, dict2, key):
     if key not in dict1:
         return {
-            'action': 'record added',
-            'value': dict2.get(key)
+            "action": "record added",
+            "value": dict2.get(key)
         }
     if key not in dict2:
         return {
-            'action': 'record deleted',
-            'value': dict1.get(key)
+            "action": "record deleted",
+            "value": dict1.get(key)
         }
     if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
         return {
-            'action': 'record nested',
+            "action": "record nested",
             'children': diff_builder(dict1[key], dict2[key])
         }
     if dict1.get(key) != dict2.get(key):
         return {
-            'action': 'record changed',
-            'previous': dict1.get(key),
-            'current': dict2.get(key)
+            "action": "record changed",
+            "previous": dict1.get(key),
+            "current": dict2.get(key)
         }
 
     return {
-        'action': 'record is the same',
-        'value': dict1.get(key)
+        "action": "record is the same",
+        "value": dict1.get(key)
     }
 
 
