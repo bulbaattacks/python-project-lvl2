@@ -11,4 +11,4 @@ This is a cli-utility to compare two files for differences.
 You can take a help information with command 'gendiff -h' or compare two files for differences with command 
 'gendiff file1 file2', format indication is required.
 
-[![asciicast](https://asciinema.org/a/vnn2xVldYWMPeWLxslUt3Y2oK.svg)](https://asciinema.org/a/vnn2xVldYWMPeWLxslUt3Y2oK)
+[![asciicast](https://asciinema.org/a/1mXoXcCK8CnWiBG6biwglJ717.svg)](https://asciinema.org/a/1mXoXcCK8CnWiBG6biwglJ717)
