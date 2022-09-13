@@ -1,11 +1,14 @@
 def to_string(data):
-    if isinstance(data, bool):
-        return str(data).lower()
     if data is None:
-        return "null"
-    if isinstance(data, dict):
-        return "[complex value]"
-    return f"'{data}'"
+        return 'null'
+
+    if isinstance(data, str):
+        return f"'{data}'"
+
+    if not isinstance(data, dict):
+        return str(data).lower()
+
+    return '[complex value]'
 
 
 def string_maker(data, path=''):
