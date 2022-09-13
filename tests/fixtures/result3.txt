@@ -1,0 +1,98 @@
+{
+ "common": {
+  "action": "record nested",
+  "children": {
+   "follow": {
+    "action": "record added",
+    "value": false
+   },
+   "setting1": {
+    "action": "record is the same",
+    "value": "Value 1"
+   },
+   "setting2": {
+    "action": "record deleted",
+    "value": 200
+   },
+   "setting3": {
+    "action": "record changed",
+    "current": null,
+    "previous": true
+   },
+   "setting4": {
+    "action": "record added",
+    "value": "blah blah"
+   },
+   "setting5": {
+    "action": "record added",
+    "value": {
+     "key5": "value5"
+    }
+   },
+   "setting6": {
+    "action": "record nested",
+    "children": {
+     "doge": {
+      "action": "record nested",
+      "children": {
+       "wow": {
+        "action": "record changed",
+        "current": "so much",
+        "previous": ""
+       }
+      }
+     },
+     "key": {
+      "action": "record is the same",
+      "value": "value"
+     },
+     "ops": {
+      "action": "record added",
+      "value": "vops"
+     }
+    }
+   }
+  }
+ },
+ "group1": {
+  "action": "record nested",
+  "children": {
+   "baz": {
+    "action": "record changed",
+    "current": "bars",
+    "previous": "bas"
+   },
+   "foo": {
+    "action": "record is the same",
+    "value": "bar"
+   },
+   "nest": {
+    "action": "record changed",
+    "current": "str",
+    "previous": {
+     "key": "value"
+    }
+   }
+  }
+ },
+ "group2": {
+  "action": "record deleted",
+  "value": {
+   "abc": 12345,
+   "deep": {
+    "id": 45
+   }
+  }
+ },
+ "group3": {
+  "action": "record added",
+  "value": {
+   "deep": {
+    "id": {
+     "number": 45
+    }
+   },
+   "fee": 100500
+  }
+ }
+}

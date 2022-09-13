@@ -15,6 +15,12 @@ def test_generate_diff_plain():
         f = file.read()
     assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', 'plain') == f
 
+def test_generate_diff_json():
+    """test two not empty files with plain format"""
+    with open('tests/fixtures/result3.txt', 'r') as file:
+        f = file.read()
+    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', 'json') == f
+
 
 def test_generate_diff_wrong_format():
     """test two not empty files"""
