@@ -1,38 +1,38 @@
 from collections import defaultdict
 
 
-def build_for_diff_dicts(dict1, dict2, key):
-    if key not in dict1:
+def build_diff_for_key(d1, d2, key):
+    if key not in d1:
         return {
             "action": "record added",
-            "value": dict2.get(key)
+            "value": d2.get(key)
         }
-    if key not in dict2:
+    if key not in d2:
         return {
             "action": "record deleted",
-            "value": dict1.get(key)
+            "value": d1.get(key)
         }
-    if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
+    if isinstance(d1[key], dict) and isinstance(d2[key], dict):
         return {
             "action": "record nested",
-            'children': diff_builder(dict1[key], dict2[key])
+            'children': diff_builder(d1[key], d2[key])
         }
-    if dict1.get(key) != dict2.get(key):
+    if d1.get(key) != d2.get(key):
         return {
             "action": "record changed",
-            "previous": dict1.get(key),
-            "current": dict2.get(key)
+            "previous": d1.get(key),
+            "current": d2.get(key)
         }
 
     return {
         "action": "record is the same",
-        "value": dict1.get(key)
+        "value": d1.get(key)
     }
 
 
-def diff_builder(dict1, dict2):
-    all_keys = set(list(dict1.keys()) + list(dict2.keys()))
+def diff_builder(d1, d2):
+    all_keys = set(list(d1.keys()) + list(d2.keys()))
     diff_dict = defaultdict(tuple)
     for key in all_keys:
-        diff_dict[key] = build_for_diff_dicts(dict1, dict2, key)
+        diff_dict[key] = build_diff_for_key(d1, d2, key)
     return diff_dict
