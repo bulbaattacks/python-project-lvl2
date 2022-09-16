@@ -1,10 +1,10 @@
 import itertools
 
 METHOD_PREFIX = {
-        "record added": "+ ",
-        "record deleted": "- ",
-        "record is the same": "  "
-    }
+    "record added": "+ ",
+    "record deleted": "- ",
+    "record is the same": "  "
+}
 
 
 def to_str(data):
