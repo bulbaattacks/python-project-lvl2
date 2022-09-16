@@ -9,4 +9,6 @@ def formatter(format, diff_dict):
         "stylish": format_stylish,
         "json": format_json
     }
+    if format not in format_chooser:
+        raise Exception(f"Unknown formatter: {format}")
     return format_chooser[format](diff_dict)

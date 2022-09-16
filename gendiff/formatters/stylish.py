@@ -1,5 +1,11 @@
 import itertools
 
+METHOD_PREFIX = {
+        "record added": "+ ",
+        "record deleted": "- ",
+        "record is the same": "  "
+    }
+
 
 def to_str(data):
     if isinstance(data, bool):
@@ -9,13 +15,7 @@ def to_str(data):
     return data
 
 
-def string_maker(data, depth=0, replacer="  ", spaces_count=1):
-
-    prefixes = {
-        "record added": "+ ",
-        "record deleted": "- ",
-        "record is the same": "  "
-    }
+def walk(data, depth=0, replacer="  ", spaces_count=1):
 
     if not isinstance(data, dict):
         return str(data)
@@ -31,31 +31,31 @@ def string_maker(data, depth=0, replacer="  ", spaces_count=1):
 
             if method == "record changed":
                 lines.append(
-                    f"{deep_indent}{prefixes['record deleted']}{k}: "
-                    f"{string_maker(to_str(v.get('previous')), depth_size + 1)}"
+                    f"{deep_indent}{METHOD_PREFIX['record deleted']}{k}: "
+                    f"{walk(to_str(v.get('previous')), depth_size + 1)}"
                 )
                 lines.append(
-                    f"{deep_indent}{prefixes['record added']}{k}: "
-                    f"{string_maker(to_str(v.get('current')), depth_size + 1)}"
+                    f"{deep_indent}{METHOD_PREFIX['record added']}{k}: "
+                    f"{walk(to_str(v.get('current')), depth_size + 1)}"
                 )
             elif method == "record nested":
                 lines.append(
-                    f"{deep_indent}{prefixes['record is the same']}{k}: "
-                    f"{string_maker(to_str(v.get('children')), depth_size + 1)}"
+                    f"{deep_indent}{METHOD_PREFIX['record is the same']}{k}: "
+                    f"{walk(to_str(v.get('children')), depth_size + 1)}"
                 )
             else:
                 lines.append(
-                    f"{deep_indent}{prefixes[v.get('action')]}{k}: "
-                    f"{string_maker(to_str(v.get('value')), depth_size + 1)}"
+                    f"{deep_indent}{METHOD_PREFIX[v.get('action')]}{k}: "
+                    f"{walk(to_str(v.get('value')), depth_size + 1)}"
                 )
         else:
             lines.append(
-                f"{deep_indent}{prefixes['record is the same']}{k}: "
-                f"{string_maker(to_str(v), depth_size + 1)}"
+                f"{deep_indent}{METHOD_PREFIX['record is the same']}{k}: "
+                f"{walk(to_str(v), depth_size + 1)}"
             )
     result = itertools.chain("{", lines, [current_indent + "}"])
     return '\n'.join(result)
 
 
 def format_stylish(diff_dict):
-    return string_maker(diff_dict)
+    return walk(diff_dict)

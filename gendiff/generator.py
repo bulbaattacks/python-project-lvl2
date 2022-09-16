@@ -12,6 +12,6 @@ def generate_diff(path_to_file1, path_to_file2, format='stylish'):
     content1 = get_content(path_to_file1)
     content2 = get_content(path_to_file2)
 
-    diff = diff_builder(content1, content2)
+    diff_dict = diff_builder(content1, content2)
 
-    return formatter(format, diff)
+    return formatter(format, diff_dict)
