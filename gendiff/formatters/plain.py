@@ -1,6 +1,6 @@
 def to_string(data):
     if data is None:
-        return 'null'
+        return "null"
 
     if isinstance(data, str):
         return f"'{data}'"
