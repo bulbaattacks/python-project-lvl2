@@ -1,28 +1,35 @@
 import itertools
 
-METHOD_PREFIX = {
-    "record added": "+ ",
-    "record deleted": "- ",
-    "record is the same": "  "
+PREFIX = {
+    "record added": "  + ",
+    "record deleted": "  - ",
+    "record is the same": "    "
 }
+INTEND = "    "
 
 
-def to_str(data):
-    if isinstance(data, bool):
-        return str(data).lower()
+def to_str(data, space_count=2):
     if data is None:
         return "null"
-    return data
-
-
-def walk(data, depth=0, replacer="  ", spaces_count=1):
-
+    if isinstance(data, str):
+        return data
     if not isinstance(data, dict):
-        return str(data)
+        return str(data).lower()
+    result = "{\n"
 
-    depth_size = depth + spaces_count
-    deep_indent = replacer * depth_size
-    current_indent = replacer * depth
+    for k, v in data.items():
+        result += (
+            f"{INTEND * space_count}{k}: "
+            f"{to_str(v, space_count + 1)}\n"
+        )
+    result += INTEND * (space_count - 1) + "}"
+
+    return result
+
+
+def walk(data, depth=0):
+
+    current_indent = INTEND * depth
     lines = []
 
     for k, v in sorted(data.items()):
@@ -31,27 +38,27 @@ def walk(data, depth=0, replacer="  ", spaces_count=1):
 
             if method == "record changed":
                 lines.append(
-                    f"{deep_indent}{METHOD_PREFIX['record deleted']}{k}: "
-                    f"{walk(to_str(v.get('previous')), depth_size + 1)}"
+                    f"{INTEND * depth}{PREFIX['record deleted']}{k}: "
+                    f"{to_str(v.get('previous'), depth + 2)}"
                 )
                 lines.append(
-                    f"{deep_indent}{METHOD_PREFIX['record added']}{k}: "
-                    f"{walk(to_str(v.get('current')), depth_size + 1)}"
+                    f"{INTEND * depth}{PREFIX['record added']}{k}: "
+                    f"{to_str(v.get('current'), depth + 2)}"
                 )
             elif method == "record nested":
                 lines.append(
-                    f"{deep_indent}{METHOD_PREFIX['record is the same']}{k}: "
-                    f"{walk(to_str(v.get('children')), depth_size + 1)}"
+                    f"{INTEND * depth}{PREFIX['record is the same']}{k}: "
+                    f"{walk(v.get('children'), depth + 1)}"
                 )
             else:
                 lines.append(
-                    f"{deep_indent}{METHOD_PREFIX[v.get('action')]}{k}: "
-                    f"{walk(to_str(v.get('value')), depth_size + 1)}"
+                    f"{INTEND * depth}{PREFIX[v.get('action')]}{k}: "
+                    f"{to_str(v.get('value'), depth + 2)}"
                 )
         else:
             lines.append(
-                f"{deep_indent}{METHOD_PREFIX['record is the same']}{k}: "
-                f"{walk(to_str(v), depth_size + 1)}"
+                f"{INTEND * depth}{PREFIX['record is the same']}{k}: "
+                f"{to_str(v, depth + 2)}"
             )
     result = itertools.chain("{", lines, [current_indent + "}"])
     return '\n'.join(result)
