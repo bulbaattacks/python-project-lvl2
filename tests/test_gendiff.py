@@ -10,7 +10,7 @@ def test_generate_diff(format, expected):
     """test two not empty files"""
     with open(expected, 'r') as file:
         f = file.read()
-    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', format) == f
+        assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', format) == f
 
 
 def test_generate_diff_wrong_format():
