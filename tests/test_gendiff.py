@@ -3,7 +3,7 @@ import pytest
 import os
 
 
-def fixture_path_constructor(file_name):
+def generate_fixture_path(file_name):
     return os.path.join("tests", "fixtures", file_name)
 
 
@@ -13,7 +13,7 @@ def fixture_path_constructor(file_name):
                           ("json", "result3.txt")])
 def test_generate_diff(format, expected):
     """test two not empty files"""
-    full_file_name = fixture_path_constructor(expected)
+    full_file_name = generate_fixture_path(expected)
     with open(full_file_name, 'r') as file:
         f = file.read()
         assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json', format) == f
