@@ -6,7 +6,11 @@
 Coverage](https://api.codeclimate.com/v1/badges/e6815c84df3c5ee24345/test_coverage)](https://codeclimate.com/github/bulbaattacks/python-project-lvl2/test_coverage)
 
 ### About
-This is a cli-utility to compare two files in json, yml format for differences.
+Утилита «Вычислитель отличий» – программа, которая определяет разницу между двумя структурами данных наподобие [jsondiff](https://www.jsondiff.com).
+Программа поддерживает различные входные форматы файлов (yaml, json) и генерирует отчет в виде plain text, stylish и json. Для написания тестов используется фреймворк Pytest.
+
+The Difference Calculator utility is a program that determines the difference between two data structures like [jsondiff](https://www.jsondiff.com).
+The program supports various input file formats (yaml, json) and generates a plain text, stylish and json report. The Pytest framework is used to write tests.
 
 ### How to run 
 You can take a help information with command 
